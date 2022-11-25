@@ -9,7 +9,7 @@ const RegisterFormStyled = styled.form`
   .form-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 1rem;
   }
 
   .form__group {
