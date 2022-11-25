@@ -1,5 +1,12 @@
+import RegisterForm from "./components/RegisterForm/RegisterForm";
+
 const App = () => {
-  return <p>¿Y por qué no?</p>;
+  return (
+    <main>
+      <h1>Create your own myths</h1>
+      <RegisterForm />
+    </main>
+  );
 };
 
 export default App;
