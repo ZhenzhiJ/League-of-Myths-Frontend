@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <HeaderStyled>
       <img src="images/header.png" alt="header logo" height={38} />
-      <span className="title">League of Myths</span>
+      <h1 className="title">League of Myths</h1>
     </HeaderStyled>
   );
 };

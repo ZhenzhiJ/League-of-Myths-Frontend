@@ -6,7 +6,7 @@ const App = () => {
     <>
       <Header />
       <main>
-        <h1>Create your own myths</h1>
+        <h2>Create your own myths</h2>
         <RegisterForm />
       </main>
     </>

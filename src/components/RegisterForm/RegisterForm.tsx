@@ -54,7 +54,7 @@ const RegisterForm = () => {
       autoComplete="off"
       onSubmit={handleFormSubmit}
     >
-      <h2 className="register-form__title form__title">Register</h2>
+      <h3 className="register-form__title form__title">Register</h3>
       <div className="register-form__form-container form-container">
         <div className="register-form__form-group form__group">
           <label
