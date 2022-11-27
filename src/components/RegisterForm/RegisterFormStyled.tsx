@@ -22,6 +22,11 @@ const RegisterFormStyled = styled.form`
     border-radius: 0.5rem;
     border: 2px solid #000;
   }
+
+  .form__link {
+    text-decoration: none;
+    color: #dcb901;
+  }
 `;
 
 export default RegisterFormStyled;
