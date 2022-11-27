@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import RegisterFormStyled from "./RegisterFormStyled";
 import useUser from "../../hooks/useUser/useUser";
 import registerFormSchema from "../../schema/registerFormSchema";
+import Button from "../Button/Button";
 
 export interface RegisterFormData {
   username: string;
@@ -99,7 +100,7 @@ const RegisterForm = () => {
             value={registerFormData.email}
           />
         </div>
-        <button>Register</button>
+        <Button text="Register" classname="register" />
       </div>
 
       <span>
