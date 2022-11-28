@@ -5,7 +5,7 @@ import LoginFormStyled from "./LoginFormStyled";
 const LoginForm = () => {
   return (
     <LoginFormStyled className="login-form form">
-      <h2 className="login-form__title form__title">Login</h2>
+      <h3 className="login-form__title form__title">Login</h3>
       <div className="register-form__form-container form-container">
         <div className="login-form__form-group form__group">
           <label htmlFor="username" className="login-form__label form__label">
