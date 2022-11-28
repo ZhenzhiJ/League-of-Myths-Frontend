@@ -20,8 +20,6 @@ jest.mock("jwt-decode", () => {
   return () => ({ id: "testid", username: "pokachu" } as CustomTokenPayload);
 });
 
-const mockRemoveToken = jest.fn();
-
 const dispatchSpy = jest.spyOn(mockInitialStore, "dispatch");
 
 Object.defineProperty(window, "localStorage", {
