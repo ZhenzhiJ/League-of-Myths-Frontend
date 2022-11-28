@@ -1,10 +1,47 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ValidationError } from "joi";
+import useUser from "../../hooks/useUser/useUser";
 import Button from "../Button/Button";
 import LoginFormStyled from "./LoginFormStyled";
+import { UserCredentials } from "../../hooks/useUser/types";
+import loginFormSchema from "../../schema/loginFormSchema";
+
+const initialFormData: UserCredentials = {
+  username: "",
+  password: "",
+};
 
 const LoginForm = () => {
+  const [loginFormData, setLoginFormData] = useState(initialFormData);
+  const [error, setError] = useState("");
+
+  const { loginUser } = useUser();
+
+  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginFormData((previousFormData) => ({
+      ...previousFormData,
+      [event.target.id]: event.target.value,
+    }));
+  };
+
+  const handleFormSubmit = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    try {
+      await loginFormSchema.validateAsync(loginFormData, {
+        abortEarly: false,
+      });
+      await loginUser(loginFormData);
+      setError("");
+    } catch (error: unknown) {
+      if (error instanceof ValidationError) {
+        setError(error.details.map((error) => error.message).join("\n"));
+      }
+    }
+  };
+
   return (
-    <LoginFormStyled className="login-form form">
+    <LoginFormStyled className="login-form form" onSubmit={handleFormSubmit}>
       <h3 className="login-form__title form__title">Login</h3>
       <div className="register-form__form-container form-container">
         <div className="login-form__form-group form__group">
@@ -16,6 +53,8 @@ const LoginForm = () => {
             id="username"
             className="login-form__input form__input"
             min="5"
+            onChange={handleFormChange}
+            value={loginFormData.username}
             autoComplete="off"
           />
         </div>
@@ -28,7 +67,9 @@ const LoginForm = () => {
             type="password"
             id="password"
             className="login-form__input form__input"
-            min=""
+            min="5"
+            onChange={handleFormChange}
+            value={loginFormData.username}
             autoComplete="off"
           />
         </div>
@@ -40,6 +81,12 @@ const LoginForm = () => {
           Register
         </Link>
       </span>
+
+      {error && (
+        <div className="register-form__error form__error" data-test-id="error">
+          There was an error: {error}
+        </div>
+      )}
     </LoginFormStyled>
   );
 };
