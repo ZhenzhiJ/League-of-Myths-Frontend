@@ -4,7 +4,7 @@ import LoginPage from "./LoginPage";
 
 describe("Given a login page", () => {
   describe("When it's rendered", () => {
-    test("Then it should show a register form with the label 'username', 'password' and a 'SIGN IN' button", () => {
+    test("Then it should show a register form with the label 'username', 'password' and a 'Login' button", () => {
       const labelUsername = "Username:";
       const labelPassword = "Password:";
       const nameButton = "Login";

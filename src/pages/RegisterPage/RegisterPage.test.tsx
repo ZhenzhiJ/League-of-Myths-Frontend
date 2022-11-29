@@ -4,7 +4,7 @@ import RegisterPage from "./RegisterPage";
 
 describe("Given a register page", () => {
   describe("When it's rendered", () => {
-    test("Then it should show a register form with the label 'username', 'password', 'email' and a 'REGISTER' button", () => {
+    test("Then it should show a register form with the label 'username', 'password', 'email' and a 'Register' button", () => {
       const labelUsername = "Username:";
       const labelPassword = "Password:";
       const labelEmail = "Email:";
