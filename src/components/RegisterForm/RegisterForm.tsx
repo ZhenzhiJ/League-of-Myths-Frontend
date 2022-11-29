@@ -67,7 +67,7 @@ const RegisterForm = () => {
             type="text"
             id="username"
             className="register-form__input form__input"
-            min="5"
+            minLength={5}
             onChange={handleFormChange}
             value={registerFormData.username}
           />
@@ -83,7 +83,7 @@ const RegisterForm = () => {
             type="password"
             id="password"
             className="register-form__input form__input"
-            min="5"
+            minLength={5}
             onChange={handleFormChange}
             value={registerFormData.password}
           />

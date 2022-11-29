@@ -52,7 +52,7 @@ const LoginForm = () => {
             type="text"
             id="username"
             className="login-form__input form__input"
-            min="5"
+            minLength={5}
             onChange={handleFormChange}
             value={loginFormData.username}
             autoComplete="off"
@@ -67,7 +67,7 @@ const LoginForm = () => {
             type="password"
             id="password"
             className="login-form__input form__input"
-            min="8"
+            minLength={5}
             onChange={handleFormChange}
             value={loginFormData.username}
             autoComplete="off"
