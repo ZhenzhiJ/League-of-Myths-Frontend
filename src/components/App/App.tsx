@@ -1,14 +1,19 @@
+import { Route, Routes } from "react-router-dom";
+import LoginPage from "../../pages/LoginPage/LoginPage";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import Header from "../Header/Header";
-import RegisterForm from "../RegisterForm/RegisterForm";
 
 const App = () => {
   return (
     <>
       <Header />
-      <main>
-        <h2>Create your own myths</h2>
-        <RegisterForm />
-      </main>
+      <Routes>
+        <Route path="/" element={<RegisterPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
+      </Routes>
     </>
   );
 };
