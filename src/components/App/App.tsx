@@ -1,17 +1,42 @@
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import useToken from "../../hooks/useToken/useToken";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
+import { useAppSelector } from "../../redux/hooks";
+import ExitRoute from "../ExitRoute/ExitRoute";
 import Header from "../Header/Header";
 
 const App = () => {
+  const isLogged = useAppSelector((state) => state.user.isLogged);
+  const { getToken } = useToken();
+
+  useEffect(() => {
+    getToken();
+  }, [getToken]);
+
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<RegisterPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/register"
+          element={
+            <ExitRoute isLogged={isLogged}>
+              <RegisterPage />
+            </ExitRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <ExitRoute isLogged={isLogged}>
+              <LoginPage />
+            </ExitRoute>
+          }
+        />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </>
