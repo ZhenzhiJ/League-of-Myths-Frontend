@@ -1,8 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Joi, { ValidationError } from "joi";
 import { store } from "../../redux/store";
-import registerFormSchema from "../../schema/registerFormSchema";
 import { renderWithProviders } from "../../testUtils/renderWithProviders";
 import RegisterForm, { RegisterFormData } from "./RegisterForm";
 
