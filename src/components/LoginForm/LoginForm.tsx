@@ -34,9 +34,11 @@ const LoginForm = () => {
       await loginUser(loginFormData);
       setError("");
     } catch (error: unknown) {
-      if (error instanceof ValidationError) {
-        setError(error.details.map((error) => error.message).join("\n"));
-      }
+      setError(
+        (error as ValidationError).details
+          .map((error) => error.message)
+          .join("\n")
+      );
     }
   };
 
