@@ -24,6 +24,14 @@ const NavigationMenuStyled = styled.div`
       background-color: transparent;
     }
   }
+  .--logout {
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    font-size: 32px;
+    color: #fff;
+  }
+
   .menu {
     &-icon {
       width: 30px;
@@ -84,9 +92,10 @@ const NavigationMenuStyled = styled.div`
         align-items: center;
         justify-content: center;
       }
-      &--logout {
+      & .--logout {
         margin: 0;
         font-size: 32px;
+        background-color: none;
       }
     }
     .main-navigation {
