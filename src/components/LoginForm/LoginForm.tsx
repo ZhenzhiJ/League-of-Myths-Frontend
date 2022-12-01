@@ -71,7 +71,7 @@ const LoginForm = () => {
             className="login-form__input form__input"
             minLength={5}
             onChange={handleFormChange}
-            value={loginFormData.username}
+            value={loginFormData.password}
             autoComplete="off"
           />
         </div>
