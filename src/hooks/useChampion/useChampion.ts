@@ -1,10 +1,6 @@
 import axios from "axios";
 import { useCallback } from "react";
 import { loadAllChampionsActionCreator } from "../../redux/features/championSlice/championSlice";
-import {
-  Champion,
-  ChampionState,
-} from "../../redux/features/championSlice/types";
 import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import championRoutes from "./championRoutes";
