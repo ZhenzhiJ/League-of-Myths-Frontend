@@ -1,11 +1,14 @@
 import { rest } from "msw";
+import championRoutes from "../hooks/useChampion/championRoutes";
 import {
   UserCredentials,
   UserRegisterCredentials,
 } from "../hooks/useUser/types";
 import userRoutes from "../hooks/useUser/userRoutes";
+import { testChampionsList } from "./testChampionsList";
 
 const { registerRoute, usersRoute, loginRoute } = userRoutes;
+const { champions } = championRoutes;
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const handlers = [
@@ -33,6 +36,13 @@ const handlers = [
     }
 
     return res(ctx.status(200), ctx.json({ token: "testtoken" }));
+  }),
+
+  rest.get(`${apiUrl}${champions}`, async (req, res, ctx) => {
+    return res.once(
+      ctx.status(200),
+      ctx.json({ allChampions: testChampionsList })
+    );
   }),
 ];
 

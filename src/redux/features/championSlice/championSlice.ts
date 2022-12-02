@@ -14,7 +14,7 @@ const championSlice = createSlice({
       action: PayloadAction<Champion[]>
     ) => ({
       ...currentChampions,
-      champions: [...action.payload],
+      champions: action.payload,
     }),
   },
 });
