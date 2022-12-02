@@ -20,6 +20,12 @@ jest.mock("jwt-decode", () => {
   return () => ({ id: "testid", username: "pokachu" } as CustomTokenPayload);
 });
 
+const mockedUseNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUseNavigate,
+}));
+
 const dispatchSpy = jest.spyOn(mockInitialStore, "dispatch");
 
 Object.defineProperty(window, "localStorage", {
@@ -56,6 +62,7 @@ describe("Given the custom hook useUser", () => {
       expect(dispatchSpy).toHaveBeenCalledWith(
         openModalActionCreator(actionPayload)
       );
+      expect(mockedUseNavigate).toHaveBeenCalledWith("/home");
     });
   });
 

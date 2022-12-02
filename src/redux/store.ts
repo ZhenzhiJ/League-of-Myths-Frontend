@@ -1,4 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { championReducer } from "./features/championSlice/championSlice";
 import { uiReducer } from "./features/uiSlice/uiSlice";
 import { userReducer } from "./features/userSlice/userSlice";
 
@@ -6,6 +7,7 @@ export const store = configureStore({
   reducer: {
     user: userReducer,
     uiModal: uiReducer,
+    champion: championReducer,
   },
 });
 
