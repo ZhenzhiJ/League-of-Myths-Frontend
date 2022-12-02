@@ -8,6 +8,7 @@ import { store, RootState } from "../redux/store";
 import { BrowserRouter } from "react-router-dom";
 import { userReducer } from "../redux/features/userSlice/userSlice";
 import { uiReducer } from "../redux/features/uiSlice/uiSlice";
+import { championReducer } from "../redux/features/championSlice/championSlice";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -19,7 +20,11 @@ export const renderWithProviders = (
   {
     preloadedState,
     store = configureStore({
-      reducer: { user: userReducer, uiModal: uiReducer },
+      reducer: {
+        user: userReducer,
+        uiModal: uiReducer,
+        champion: championReducer,
+      },
       preloadedState,
     }),
     ...renderOptions
