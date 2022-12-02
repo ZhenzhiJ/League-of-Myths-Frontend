@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-const ChampionCardStyled = styled.div`
+const ChampionCardStyled = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  height: 300px;
   font-size: 48px;
   p {
     margin: 0;
@@ -15,9 +13,20 @@ const ChampionCardStyled = styled.div`
       width: 300px;
       height: 300px;
       object-fit: cover;
-      object-position: top;
       margin: 0 auto;
       border-radius: 25px;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .champion {
+      &-image {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin: 0 auto;
+        border-radius: 25px;
+      }
     }
   }
 `;
