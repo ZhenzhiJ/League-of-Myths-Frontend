@@ -10,6 +10,8 @@ const championFactory = Factory.define<Champion>(() => ({
   abilityW: faker.random.word(),
   abilityE: faker.random.word(),
   ultimateR: faker.random.word(),
+  image: faker.image.animals(300, 300),
+  imageBackup: faker.image.animals(300, 300),
 }));
 
 export const getRandomChampion = () => championFactory.build();
