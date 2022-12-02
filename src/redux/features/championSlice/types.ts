@@ -6,6 +6,8 @@ export interface Champion {
   abilityW: string;
   abilityE: string;
   ultimateR: string;
+  image: string;
+  imageBackup: string;
 }
 
 export interface ChampionState {

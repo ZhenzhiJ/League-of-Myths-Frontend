@@ -1,7 +1,9 @@
+import ChampionCardList from "../../components/ChampionCardList/ChampionCardList";
+
 const HomePage = () => {
   return (
     <>
-      <img src="/images/penguin.jpg" alt="penguin"></img>
+      <ChampionCardList />
     </>
   );
 };
