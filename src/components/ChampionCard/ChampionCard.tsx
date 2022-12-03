@@ -11,8 +11,8 @@ const ChampionCard = ({
   return (
     <ChampionCardStyled>
       <img src={imageBackup} alt={name} className="champion-image" />
-      <p className="champion-name">{name.toUpperCase()}</p>
-      <p className="champion-role">{role.toUpperCase()}</p>
+      <h3 className="champion-name">{name.toUpperCase()}</h3>
+      <h3 className="champion-role">{role.toUpperCase()}</h3>
     </ChampionCardStyled>
   );
 };

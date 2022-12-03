@@ -5,7 +5,7 @@ const ChampionCardStyled = styled.li`
   flex-direction: column;
   align-items: center;
   font-size: 48px;
-  p {
+  h3 {
     margin: 0;
   }
   .champion {
