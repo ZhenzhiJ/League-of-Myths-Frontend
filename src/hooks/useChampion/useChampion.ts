@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useCallback } from "react";
-import { loadAllChampionsActionCreator } from "../../redux/features/championSlice/championSlice";
+import {
+  deleteChampionActionCreator,
+  loadAllChampionsActionCreator,
+} from "../../redux/features/championSlice/championSlice";
 import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import championRoutes from "./championRoutes";
@@ -30,7 +33,25 @@ const useChampion = () => {
     }
   }, [dispatch]);
 
-  return { getAllChampions };
+  const deleteChampion = useCallback(
+    async (idChampion: string) => {
+      try {
+        await axios.delete(`${apiUrl}${champions}/delete/${idChampion}`);
+
+        dispatch(deleteChampionActionCreator(idChampion));
+      } catch (error: unknown) {
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            modalText: "Failed to delete champion",
+          })
+        );
+      }
+    },
+    [dispatch]
+  );
+
+  return { getAllChampions, deleteChampion };
 };
 
 export default useChampion;
