@@ -19,9 +19,9 @@ const ChampionCardList = (): JSX.Element => {
       <h3 className="list-title">Mythics:</h3>
       <ul className="champion-list">
         {champions.length === 0 ? (
-          <h2 className="empty-warning">
+          <h3 className="empty-warning">
             Sorry, all champions are at the Rift.
-          </h2>
+          </h3>
         ) : (
           champions.map((champion) => (
             <ChampionCard champion={champion} key={faker.random.word()} />

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ShowModalActionPayload, UiState } from "./types";
 
-const initialState: UiState = {
+export const initialUiState: UiState = {
   isError: false,
   modalText: "",
   showModal: false,
@@ -9,7 +9,7 @@ const initialState: UiState = {
 
 const uiSlice = createSlice({
   name: "ui",
-  initialState,
+  initialState: initialUiState,
   reducers: {
     closeModalReducer: (previousUi: UiState) => ({
       ...previousUi,
