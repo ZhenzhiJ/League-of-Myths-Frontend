@@ -4,9 +4,10 @@ import {
 } from "../../../factories/championFactory";
 import {
   championReducer,
+  deleteChampionActionCreator,
   loadAllChampionsActionCreator,
 } from "./championSlice";
-import { ChampionState } from "./types";
+import { Champion, ChampionState } from "./types";
 
 const initialChampionState: ChampionState = {
   champions: [],
@@ -52,6 +53,28 @@ describe("Given a championReducer", () => {
         );
 
         expect(newState).toStrictEqual({ champions: newChampion });
+      });
+    });
+
+    describe("When its reducer deleteCharacter is invoked with a payload of 1 character id and the current state", () => {
+      test("Then it should return a new statue without the character in the payload", () => {
+        const initialState = {
+          champions: [],
+          champion: {} as Champion,
+        };
+
+        const currentChampions = getRandomChampionList(1);
+        const randomId = currentChampions[0].id;
+        const currentState = {
+          champions: currentChampions,
+          champion: {} as Champion,
+        };
+
+        const action = deleteChampionActionCreator(randomId);
+
+        const newChampionState = championReducer(currentState, action);
+
+        expect(newChampionState).toStrictEqual(initialState);
       });
     });
   });

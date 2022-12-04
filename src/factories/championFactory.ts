@@ -3,6 +3,7 @@ import { Factory } from "fishery";
 import { Champion } from "../redux/features/championSlice/types";
 
 const championFactory = Factory.define<Champion>(() => ({
+  id: faker.random.alphaNumeric(10),
   name: faker.random.word(),
   role: faker.random.word(),
   passive: faker.random.word(),
