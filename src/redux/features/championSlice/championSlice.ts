@@ -16,10 +16,19 @@ const championSlice = createSlice({
       ...currentChampions,
       champions: action.payload,
     }),
+
+    deleteChampion: (currentChampion, action: PayloadAction<string>) => ({
+      ...currentChampion,
+      champions: currentChampion.champions.filter(
+        (champion) => champion.id !== action.payload
+      ),
+    }),
   },
 });
 
-export const { loadAllChampions: loadAllChampionsActionCreator } =
-  championSlice.actions;
+export const {
+  loadAllChampions: loadAllChampionsActionCreator,
+  deleteChampion: deleteChampionActionCreator,
+} = championSlice.actions;
 
 export const championReducer = championSlice.reducer;
