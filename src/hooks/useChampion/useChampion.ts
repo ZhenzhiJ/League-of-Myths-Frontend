@@ -7,9 +7,10 @@ import {
 import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import championRoutes from "./championRoutes";
+import { ChampionForm } from "./types";
 
 const apiUrl = process.env.REACT_APP_API_URL;
-const { champions } = championRoutes;
+const { champions, createChampionRoute } = championRoutes;
 
 const useChampion = () => {
   const dispatch = useAppDispatch();
@@ -51,7 +52,26 @@ const useChampion = () => {
     [dispatch]
   );
 
-  return { getAllChampions, deleteChampion };
+  const createChampion = useCallback(
+    async (championForm: ChampionForm) => {
+      try {
+        await axios.post(
+          `${apiUrl}${champions}${createChampionRoute}`,
+          championForm
+        );
+      } catch (error: unknown) {
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            modalText: "Failed to create champion",
+          })
+        );
+      }
+    },
+    [dispatch]
+  );
+
+  return { getAllChampions, deleteChampion, createChampion };
 };
 
 export default useChampion;
