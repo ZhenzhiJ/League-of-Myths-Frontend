@@ -1,6 +1,6 @@
 const championRoutes = {
   champions: "/champions",
-  createChampion: "/create",
+  createChampionRoute: "/create",
 };
 
 export default championRoutes;

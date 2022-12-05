@@ -10,7 +10,7 @@ import championRoutes from "./championRoutes";
 import { ChampionForm } from "./types";
 
 const apiUrl = process.env.REACT_APP_API_URL;
-const { champions, createChampion } = championRoutes;
+const { champions, createChampionRoute } = championRoutes;
 
 const useChampion = () => {
   const dispatch = useAppDispatch();
@@ -56,7 +56,7 @@ const useChampion = () => {
     async (championForm: ChampionForm) => {
       try {
         await axios.post(
-          `${apiUrl}${champions}${createChampion}`,
+          `${apiUrl}${champions}${createChampionRoute}`,
           championForm
         );
       } catch (error: unknown) {
