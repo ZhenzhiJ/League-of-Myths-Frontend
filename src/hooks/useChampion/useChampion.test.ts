@@ -1,10 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { testChampionsList } from "../../mocks/testChampionsList";
-import {
-  deleteChampionActionCreator,
-  loadAllChampionsActionCreator,
-} from "../../redux/features/championSlice/championSlice";
+import { loadAllChampionsActionCreator } from "../../redux/features/championSlice/championSlice";
 import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { store } from "../../redux/store";
 import ContextWrapper from "../../testUtils/ContextWrapper";
