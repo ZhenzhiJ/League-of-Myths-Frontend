@@ -25,7 +25,7 @@ const LoginFormStyled = styled.form`
 
   .form__link {
     text-decoration: none;
-    color: #dcb901;
+    color: #8e8f58;
   }
 `;
 
