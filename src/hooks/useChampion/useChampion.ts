@@ -15,6 +15,8 @@ const { champions, createChampionRoute } = championRoutes;
 const useChampion = () => {
   const dispatch = useAppDispatch();
 
+  const token = localStorage.getItem("token");
+
   const getAllChampions = useCallback(async () => {
     try {
       const response = await axios.get(`${apiUrl}${champions}`);
@@ -57,7 +59,13 @@ const useChampion = () => {
       try {
         await axios.post(
           `${apiUrl}${champions}${createChampionRoute}`,
-          championForm
+          championForm,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
       } catch (error: unknown) {
         dispatch(
@@ -68,7 +76,7 @@ const useChampion = () => {
         );
       }
     },
-    [dispatch]
+    [dispatch, token]
   );
 
   return { getAllChampions, deleteChampion, createChampion };
