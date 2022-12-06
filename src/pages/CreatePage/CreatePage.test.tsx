@@ -11,7 +11,7 @@ jest.mock("../../hooks/useChampion/useChampion.ts", () => {
 
 describe("Given the LoginForm Component", () => {
   describe("When it's rendered", () => {
-    test("Then it should return 4 input text elements, 7 spinbutton a heading 'armor class, option 'sorcerer', a select 'class:' a button 'create'", () => {
+    test("Then it should return 6 input text and a button 'create'", () => {
       const nameText = "Name:";
       const passiveText = "Passive:";
       const abilityQtext = "Ability Q:";
