@@ -2,10 +2,11 @@ import { useState } from "react";
 import { ChampionForm } from "../../hooks/useChampion/types";
 import useChampion from "../../hooks/useChampion/useChampion";
 import Button from "../Button/Button";
+import CreateFormStyle from "./CreateFormStyled";
 
 const initialChampionData: ChampionForm = {
   name: "",
-  role: "",
+  role: "top",
   passive: "",
   abilityQ: "",
   abilityW: "",
@@ -53,7 +54,7 @@ const CreateForm = (): JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <CreateFormStyle onSubmit={handleSubmit}>
       <div className="create-form__item--image">
         <label className="create-form__label" htmlFor="image">
           {(createChampionData.image as File).name ? (
@@ -86,7 +87,7 @@ const CreateForm = (): JSX.Element => {
           </label>
           <input
             value={createChampionData.name}
-            className="create-form__input"
+            className="create-form__input--text"
             type="text"
             id="name"
             placeholder="Insert name here"
@@ -106,11 +107,11 @@ const CreateForm = (): JSX.Element => {
             required
           >
             {/* <option>Select a role</option> */}
-            <option value="top">top</option>
-            <option value="jgl">jgl</option>
-            <option value="mid">mid</option>
-            <option value="adc">adc</option>
-            <option value="sup">sup</option>
+            <option value="top">TOP</option>
+            <option value="jgl">JGL</option>
+            <option value="mid">MID</option>
+            <option value="adc">ADC</option>
+            <option value="sup">SUP</option>
           </select>
         </div>
       </div>
@@ -121,7 +122,7 @@ const CreateForm = (): JSX.Element => {
         </label>
         <input
           value={createChampionData.passive}
-          className="create-form__input"
+          className="create-form__input--text"
           type="text"
           id="passive"
           placeholder="Insert passive here"
@@ -200,7 +201,7 @@ const CreateForm = (): JSX.Element => {
         children={"Create"}
         ariaLabel="Create"
       />
-    </form>
+    </CreateFormStyle>
   );
 };
 
