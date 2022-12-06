@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { useEffect } from "react";
 import useChampion from "../../hooks/useChampion/useChampion";
 import { useAppSelector } from "../../redux/hooks";
@@ -24,7 +23,7 @@ const ChampionCardList = (): JSX.Element => {
           </h3>
         ) : (
           champions.map((champion) => (
-            <ChampionCard champion={champion} key={faker.random.word()} />
+            <ChampionCard champion={champion} key={champion.id} />
           ))
         )}
       </ul>
