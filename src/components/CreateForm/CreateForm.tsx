@@ -96,10 +96,7 @@ const CreateForm = (): JSX.Element => {
           />
         </div>
         <div className="create-form__item">
-          <label
-            className="create-form__label--character"
-            htmlFor="characterPassive"
-          >
+          <label className="create-form__label--character" htmlFor="role">
             Role:
           </label>
           <select
