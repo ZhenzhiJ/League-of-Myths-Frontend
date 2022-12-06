@@ -6,7 +6,7 @@ const ChampionCardListStyled = styled.div`
   align-items: center;
   gap: 20px;
   .subtitle {
-    color: #bcbd6e;
+    color: #8e8f58;
     padding-top: 30px;
     margin: 0;
     text-align: center;
