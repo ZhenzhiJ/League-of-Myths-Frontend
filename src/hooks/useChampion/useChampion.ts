@@ -5,7 +5,11 @@ import {
   deleteChampionActionCreator,
   loadAllChampionsActionCreator,
 } from "../../redux/features/championSlice/championSlice";
-import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
+  hideLoadingActionCreator,
+  openModalActionCreator,
+  showLoadingActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import championRoutes from "./championRoutes";
 import { ChampionForm } from "./types";
@@ -20,15 +24,17 @@ const useChampion = () => {
   const token = localStorage.getItem("token");
 
   const getAllChampions = useCallback(async () => {
+    dispatch(showLoadingActionCreator());
     try {
       const response = await axios.get(`${apiUrl}${champions}`);
 
       const responseData = response.data;
 
       const { allChampions } = responseData;
-
+      dispatch(hideLoadingActionCreator());
       dispatch(loadAllChampionsActionCreator(allChampions));
     } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: true,
@@ -40,11 +46,13 @@ const useChampion = () => {
 
   const deleteChampion = useCallback(
     async (idChampion: string) => {
+      dispatch(showLoadingActionCreator());
       try {
         await axios.delete(`${apiUrl}${champions}/delete/${idChampion}`);
-
+        dispatch(hideLoadingActionCreator());
         dispatch(deleteChampionActionCreator(idChampion));
       } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
         dispatch(
           openModalActionCreator({
             isError: true,
@@ -58,6 +66,7 @@ const useChampion = () => {
 
   const createChampion = useCallback(
     async (championForm: ChampionForm) => {
+      dispatch(showLoadingActionCreator());
       try {
         await axios.post(
           `${apiUrl}${champions}${createChampionRoute}`,
@@ -69,9 +78,11 @@ const useChampion = () => {
             },
           }
         );
+        dispatch(hideLoadingActionCreator());
 
         navigate("/home");
       } catch (error: unknown) {
+        dispatch(hideLoadingActionCreator());
         dispatch(
           openModalActionCreator({
             isError: true,
