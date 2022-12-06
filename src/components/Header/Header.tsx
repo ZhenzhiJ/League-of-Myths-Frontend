@@ -17,7 +17,7 @@ const Header = () => {
     <HeaderStyled className="main-header">
       <div className="logo-container">
         <h1 className="title">League of Myths</h1>
-        <img src="images/header.png" alt="header logo" height={38} />
+        <img src="images/header.png" alt="header logo" height={38} width={38} />
       </div>
       <NavigationMenu
         paths={navigationOptions.paths}

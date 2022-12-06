@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   deleteChampionActionCreator,
   loadAllChampionsActionCreator,
@@ -14,6 +15,7 @@ const { champions, createChampionRoute } = championRoutes;
 
 const useChampion = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
@@ -67,6 +69,8 @@ const useChampion = () => {
             },
           }
         );
+
+        navigate("/home");
       } catch (error: unknown) {
         dispatch(
           openModalActionCreator({
@@ -76,7 +80,7 @@ const useChampion = () => {
         );
       }
     },
-    [dispatch, token]
+    [dispatch, navigate, token]
   );
 
   return { getAllChampions, deleteChampion, createChampion };
