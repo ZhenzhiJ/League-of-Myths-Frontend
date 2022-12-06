@@ -9,10 +9,9 @@ import { useAppSelector } from "../../redux/hooks";
 import ExitRoute from "../ExitRoute/ExitRoute";
 import Header from "../Header/Header";
 import Loading from "../Loading/Loading";
-import Modal from "../Modal/Modal";
 
 const App = () => {
-  const { isLoading, showModal } = useAppSelector(({ uiModal }) => uiModal);
+  const { isLoading } = useAppSelector(({ uiModal }) => uiModal);
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const { getToken } = useToken();
   getToken();
@@ -20,7 +19,6 @@ const App = () => {
   return (
     <>
       <Header />
-      {showModal && <Modal />}
       {isLoading && <Loading />}
       <Routes>
         <Route path="/" element={<HomePage />} />

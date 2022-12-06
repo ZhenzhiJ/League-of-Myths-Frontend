@@ -12,19 +12,19 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: initialUiState,
   reducers: {
-    closeModalReducer: (previousUi: UiState) => ({
-      ...previousUi,
-      showModal: false,
-    }),
-
     openModalReducer: (
-      previousUi: UiState,
+      currentUiState,
       action: PayloadAction<ShowModalActionPayload>
-    ) => ({
-      ...previousUi,
+    ): UiState => ({
+      ...currentUiState,
       showModal: true,
       isError: action.payload.isError,
       modalText: action.payload.modalText,
+    }),
+
+    closeModalReducer: (currentUiState): UiState => ({
+      ...currentUiState,
+      showModal: false,
     }),
 
     showLoading: (currentUiState): UiState => ({
