@@ -53,7 +53,7 @@ describe("Given the useCharacter custom hook", () => {
 
       const actionPayload = {
         isError: true,
-        modalText: "Failed to load champions",
+        modalText: "Failed to load champions.",
       };
 
       await act(async () => await getAllChampions());
@@ -73,7 +73,7 @@ describe("Given the useCharacter custom hook", () => {
 
       const actionPayload = {
         isError: true,
-        modalText: "Failed to delete champion",
+        modalText: "Failed to delete champion.",
       };
 
       await result.current.deleteChampion(idChampion);
@@ -134,7 +134,7 @@ describe("Given the useCharacter custom hook", () => {
 
         const actionPayload = {
           isError: true,
-          modalText: "Failed to create champion",
+          modalText: "Failed to create champion.",
         };
 
         await result.current.createChampion(championFormData);

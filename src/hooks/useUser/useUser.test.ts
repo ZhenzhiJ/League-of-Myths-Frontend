@@ -54,7 +54,7 @@ describe("Given the custom hook useUser", () => {
 
       const actionPayload = {
         isError: false,
-        modalText: "User succesfully registered",
+        modalText: "User succesfully registered.",
       };
 
       await registerUser(newUser);
@@ -83,7 +83,7 @@ describe("Given the custom hook useUser", () => {
 
       const actionPayload = {
         isError: false,
-        modalText: "User already registered",
+        modalText: "User already registered.",
       };
 
       await registerUser(registeredUser);
