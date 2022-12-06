@@ -1,7 +1,11 @@
 import axios from "axios";
 import decodeToken from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
+  hideLoadingActionCreator,
+  openModalActionCreator,
+  showLoadingActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import { User } from "../../redux/features/userSlice/types";
 import {
   loginUserActionCreator,
@@ -25,13 +29,14 @@ const useUser = () => {
   const navigate = useNavigate();
 
   const registerUser = async (userData: UserRegisterCredentials) => {
+    dispatch(showLoadingActionCreator());
     try {
       await axios.post(`${apiUrl}${usersRoute}${registerRoute}`, {
         username: userData.username,
         password: userData.password,
         email: userData.email,
       });
-
+      dispatch(hideLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: false,
@@ -41,6 +46,7 @@ const useUser = () => {
 
       navigate("/home");
     } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: false,
@@ -51,6 +57,7 @@ const useUser = () => {
   };
 
   const loginUser = async (user: UserCredentials) => {
+    dispatch(showLoadingActionCreator());
     try {
       const login = await axios.post<LoginResponse>(
         `${apiUrl}${usersRoute}${loginRoute}`,
@@ -68,7 +75,7 @@ const useUser = () => {
         ...tokenPayload,
         token,
       };
-
+      dispatch(hideLoadingActionCreator());
       dispatch(loginUserActionCreator(loggedUser));
       dispatch(
         openModalActionCreator({
@@ -79,6 +86,7 @@ const useUser = () => {
       window.localStorage.setItem("token", token);
       return true;
     } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: true,

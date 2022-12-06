@@ -8,8 +8,10 @@ import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import { useAppSelector } from "../../redux/hooks";
 import ExitRoute from "../ExitRoute/ExitRoute";
 import Header from "../Header/Header";
+import Loading from "../Loading/Loading";
 
 const App = () => {
+  const { isLoading } = useAppSelector(({ uiModal }) => uiModal);
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const { getToken } = useToken();
   getToken();
@@ -17,6 +19,7 @@ const App = () => {
   return (
     <>
       <Header />
+      {isLoading && <Loading />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
