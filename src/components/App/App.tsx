@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import useToken from "../../hooks/useToken/useToken";
+import CreatePage from "../../pages/CreatePage/CreatePage";
 import HomePage from "../../pages/HomePage/HomePage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
@@ -12,10 +12,7 @@ import Header from "../Header/Header";
 const App = () => {
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const { getToken } = useToken();
-
-  useEffect(() => {
-    getToken();
-  }, [getToken]);
+  getToken();
 
   return (
     <>
@@ -39,6 +36,7 @@ const App = () => {
             </ExitRoute>
           }
         />
+        <Route path="/create" element={<CreatePage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </>

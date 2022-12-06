@@ -105,7 +105,7 @@ const CreateForm = (): JSX.Element => {
           <select
             className="create-form__input create-form__input--select"
             onChange={handleFormChange}
-            id="characterRole"
+            id="role"
             required
           >
             {/* <option>Select a role</option> */}
@@ -140,9 +140,10 @@ const CreateForm = (): JSX.Element => {
             Ability Q:
           </label>
           <textarea
-            id="details"
-            placeholder="Insert ability Q here"
+            value={createChampionData.abilityQ}
             rows={3}
+            id="abilityQ"
+            placeholder="Insert ability Q here"
             className="character-information__input character-information__input--textArea"
             onChange={handleFormChange}
             autoComplete="off"
@@ -154,9 +155,10 @@ const CreateForm = (): JSX.Element => {
             Ability W:
           </label>
           <textarea
-            id="details"
-            placeholder="Insert ability W here"
+            value={createChampionData.abilityW}
             rows={3}
+            id="abilityW"
+            placeholder="Insert ability W here"
             className="character-information__input character-information__input--textArea"
             onChange={handleFormChange}
             autoComplete="off"
@@ -168,9 +170,10 @@ const CreateForm = (): JSX.Element => {
             Ability E:
           </label>
           <textarea
-            id="details"
-            placeholder="Insert ability E here"
+            value={createChampionData.abilityE}
             rows={3}
+            id="abilityE"
+            placeholder="Insert ability E here"
             className="character-information__input character-information__input--textArea"
             onChange={handleFormChange}
             autoComplete="off"
@@ -183,9 +186,10 @@ const CreateForm = (): JSX.Element => {
             Ultimate R:
           </label>
           <textarea
-            id="details"
-            placeholder="Insert ultimate R here"
+            value={createChampionData.ultimateR}
             rows={3}
+            id="ultimateR"
+            placeholder="Insert ultimate R here"
             className="character-information__input character-information__input--textArea"
             onChange={handleFormChange}
             autoComplete="off"
