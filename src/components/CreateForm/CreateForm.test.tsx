@@ -22,7 +22,7 @@ describe("Given the LoginForm Component", () => {
   const createButton = "Create";
 
   describe("When it's rendered", () => {
-    test("Then it should return 4 input text elements, 7 spinbutton a heading 'armor class, option 'sorcerer', a select 'class:' a button 'create'", () => {
+    test("Then it should return 6 input text, 1 select and a button 'create'", () => {
       renderWithProviders(<CreateForm />);
 
       const expectedName = screen.getByRole("textbox", {
@@ -66,7 +66,7 @@ describe("Given the LoginForm Component", () => {
     });
   });
 
-  describe("When it's rendered all inputs fullfilled and Create button it's clicked", () => {
+  describe("When it's rendered all inputs fullfilled and Create button is clicked", () => {
     test("Then the form should be submited", async () => {
       const image = new File(["avatar"], "avatar.jpg", {
         type: "image/jpg",

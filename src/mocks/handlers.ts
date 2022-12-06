@@ -8,7 +8,8 @@ import userRoutes from "../hooks/useUser/userRoutes";
 import { testChampionsList } from "./testChampionsList";
 
 const { registerRoute, usersRoute, loginRoute } = userRoutes;
-const { champions } = championRoutes;
+const { champions, createChampionRoute } = championRoutes;
+const { id: idChampion } = testChampionsList[1];
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const handlers = [
@@ -44,6 +45,40 @@ const handlers = [
       ctx.json({ allChampions: testChampionsList })
     );
   }),
+
+  rest.get(`${apiUrl}${champions}`, async (req, res, ctx) => {
+    return res.once(
+      ctx.status(500),
+      ctx.json({ error: "Something goes wrong. Try again" })
+    );
+  }),
+
+  rest.delete(
+    `${apiUrl}${champions}/delete/${idChampion}`,
+    async (req, res, ctx) => {
+      return res.once(ctx.status(200));
+    }
+  ),
+
+  rest.post(
+    `${apiUrl}${champions}${createChampionRoute}`,
+    async (req, res, ctx) => {
+      return res.once(
+        ctx.status(200),
+        ctx.json({ text: "Character created!" })
+      );
+    }
+  ),
+
+  rest.post(
+    `${apiUrl}${champions}${createChampionRoute}`,
+    async (req, res, ctx) => {
+      return res.once(
+        ctx.status(500),
+        ctx.json({ error: "Character cannot be created!" })
+      );
+    }
+  ),
 ];
 
 export default handlers;

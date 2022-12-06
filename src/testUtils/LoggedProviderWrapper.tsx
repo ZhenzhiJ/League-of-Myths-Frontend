@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import mockInitialStore from "../mocks/stores/mockInitialStore";
+import mockInitialStore from "../mocks/stores/mockLoggedStore";
 
 interface ProviderWrapperProps {
   children: JSX.Element | JSX.Element[];

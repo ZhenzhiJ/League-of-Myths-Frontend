@@ -1,13 +1,24 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { getRandomChampion } from "../../factories/championFactory";
 import { testChampionsList } from "../../mocks/testChampionsList";
-import { loadAllChampionsActionCreator } from "../../redux/features/championSlice/championSlice";
+import {
+  deleteChampionActionCreator,
+  loadAllChampionsActionCreator,
+} from "../../redux/features/championSlice/championSlice";
 import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { store } from "../../redux/store";
 import ContextWrapper from "../../testUtils/ContextWrapper";
+import LoggedProviderWrapper from "../../testUtils/LoggedProviderWrapper";
 import useChampion from "./useChampion";
 
 const dispatchSpy = jest.spyOn(store, "dispatch");
+
+const mockedUseNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUseNavigate,
+}));
 
 describe("Given the useCharacter custom hook", () => {
   describe("When it invokes its function getAllChampions", () => {
@@ -53,8 +64,8 @@ describe("Given the useCharacter custom hook", () => {
     });
   });
 
-  describe("When it invokes the deleteChampion", () => {
-    test("Then dispatch should be called with show and hide LoadingActionCreator and showModalActionCreator with error true and 'Something goes wrong. Try again'", async () => {
+  describe("When it invokes the deleteChampion and it fails to delete", () => {
+    test("Then it should throw an error 'Failed to delete champion'", async () => {
       const { id: idChampion } = testChampionsList[0];
       const { result } = renderHook(() => useChampion(), {
         wrapper: ContextWrapper,
@@ -70,6 +81,68 @@ describe("Given the useCharacter custom hook", () => {
       expect(dispatchSpy).toHaveBeenCalledWith(
         openModalActionCreator(actionPayload)
       );
+    });
+  });
+
+  describe("When it invokes the deleteChampion and its successfull", () => {
+    test("Then it should delete the corresponding champion", async () => {
+      const { id: idChampion } = testChampionsList[1];
+      const { result } = renderHook(() => useChampion(), {
+        wrapper: ContextWrapper,
+      });
+
+      await result.current.deleteChampion(idChampion);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        deleteChampionActionCreator(idChampion)
+      );
+    });
+  });
+
+  describe("When it invokes the function createCharacter", () => {
+    const createChampionData = getRandomChampion();
+    const championFormData = {
+      id: createChampionData.id,
+      name: createChampionData.name,
+      role: createChampionData.role,
+      passive: createChampionData.passive,
+      abilityQ: createChampionData.abilityQ,
+      abilityW: createChampionData.abilityW,
+      abilityE: createChampionData.abilityE,
+      ultimateR: createChampionData.ultimateR,
+      image: createChampionData.image,
+      createdBy: "63839656464349981a7e1499",
+    };
+
+    describe("and it's invoked with a character data correctly", () => {
+      test("Then it should calls navigate with '/home'", async () => {
+        const { result } = renderHook(() => useChampion(), {
+          wrapper: LoggedProviderWrapper,
+        });
+
+        await result.current.createChampion(championFormData);
+
+        expect(mockedUseNavigate).toHaveBeenCalledWith("/home");
+      });
+    });
+
+    describe("When it's invoked an axios rejects an error", () => {
+      test("Then it should throw an error", async () => {
+        const { result } = renderHook(() => useChampion(), {
+          wrapper: ContextWrapper,
+        });
+
+        const actionPayload = {
+          isError: true,
+          modalText: "Failed to create champion",
+        };
+
+        await result.current.createChampion(championFormData);
+
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          openModalActionCreator(actionPayload)
+        );
+      });
     });
   });
 });
