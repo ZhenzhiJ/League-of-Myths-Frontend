@@ -5,6 +5,11 @@ const ChampionCardListStyled = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
+  li {
+    list-style-type: none;
+  }
+
   .subtitle {
     color: #8e8f58;
     padding-top: 30px;

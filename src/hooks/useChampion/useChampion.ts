@@ -38,7 +38,7 @@ const useChampion = () => {
       dispatch(
         openModalActionCreator({
           isError: true,
-          modalText: "Failed to load champions",
+          modalText: "Failed to load champions.",
         })
       );
     }
@@ -51,12 +51,18 @@ const useChampion = () => {
         await axios.delete(`${apiUrl}${champions}/delete/${idChampion}`);
         dispatch(hideLoadingActionCreator());
         dispatch(deleteChampionActionCreator(idChampion));
+        dispatch(
+          openModalActionCreator({
+            isError: false,
+            modalText: "Champion went back to its hometown.",
+          })
+        );
       } catch (error: unknown) {
         dispatch(hideLoadingActionCreator());
         dispatch(
           openModalActionCreator({
             isError: true,
-            modalText: "Failed to delete champion",
+            modalText: "Failed to delete champion.",
           })
         );
       }
@@ -79,6 +85,12 @@ const useChampion = () => {
           }
         );
         dispatch(hideLoadingActionCreator());
+        dispatch(
+          openModalActionCreator({
+            isError: false,
+            modalText: "Champion ready to battle.",
+          })
+        );
 
         navigate("/home");
       } catch (error: unknown) {
@@ -86,7 +98,7 @@ const useChampion = () => {
         dispatch(
           openModalActionCreator({
             isError: true,
-            modalText: "Failed to create champion",
+            modalText: "Failed to create champion.",
           })
         );
       }

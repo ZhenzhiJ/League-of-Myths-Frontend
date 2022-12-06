@@ -40,7 +40,7 @@ const useUser = () => {
       dispatch(
         openModalActionCreator({
           isError: false,
-          modalText: "User succesfully registered",
+          modalText: "User succesfully registered.",
         })
       );
 
@@ -50,7 +50,7 @@ const useUser = () => {
       dispatch(
         openModalActionCreator({
           isError: false,
-          modalText: "User already registered",
+          modalText: "User already registered.",
         })
       );
     }
