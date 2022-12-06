@@ -18,9 +18,11 @@ const ChampionCardList = (): JSX.Element => {
       <h3 className="list-title">Mythics:</h3>
       <ul className="champion-list">
         {champions.length === 0 ? (
-          <h3 className="empty-warning">
-            Sorry, all champions are at the Rift.
-          </h3>
+          <li>
+            <h3 className="empty-warning">
+              Sorry, all champions are at the Rift.
+            </h3>
+          </li>
         ) : (
           champions.map((champion) => (
             <ChampionCard champion={champion} key={champion.id} />
