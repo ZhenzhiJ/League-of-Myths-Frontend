@@ -5,10 +5,7 @@ import {
   mockSuccessFeedback,
   mockUserInitialState,
 } from "../../mocks/states/mockModalState";
-import {
-  closeModalActionCreator,
-  openModalActionCreator,
-} from "../../redux/features/uiSlice/uiSlice";
+import { closeModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { renderWithProviders } from "../../testUtils/renderWithProviders";
 import Modal from "./Modal";
 
