@@ -83,6 +83,7 @@ const useUser = () => {
           modalText: "Login successful",
         })
       );
+
       window.localStorage.setItem("token", token);
       return true;
     } catch (error: unknown) {

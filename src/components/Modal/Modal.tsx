@@ -1,31 +1,27 @@
-import { useCallback, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useEffect } from "react";
+import { useAppDispatch } from "../../redux/hooks";
 import { closeModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import ModalStyled from "./ModalStyled";
 
-const Feedback = (): JSX.Element => {
-  const { modalText: feedbackMessage, isError } = useAppSelector(
-    ({ uiModal }) => uiModal
-  );
+interface ModalProps {
+  messageFeedback: string;
+  isError: boolean;
+}
+
+const Modal = ({ messageFeedback, isError }: ModalProps): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const closeFeedback = useCallback(() => {
-    dispatch(closeModalActionCreator());
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(closeModalActionCreator());
+    }, 3000);
   }, [dispatch]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      closeFeedback();
-    }, 2300);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [closeFeedback]);
-
   return (
-    <div className={isError ? "feedback-error" : "feedback-success"}>
-      <div className="feedback-message">{feedbackMessage}</div>
-    </div>
+    <ModalStyled className={isError ? "feedback-error" : "feedback-success"}>
+      <div className="feedback-message">{messageFeedback}</div>
+    </ModalStyled>
   );
 };
 
-export default Feedback;
+export default Modal;
