@@ -11,6 +11,7 @@ import { store } from "../../redux/store";
 import ContextWrapper from "../../testUtils/ContextWrapper";
 import LoggedProviderWrapper from "../../testUtils/LoggedProviderWrapper";
 import useChampion from "./useChampion";
+import mockInitialStore from "../../mocks/stores/mockLoggedStore";
 
 const dispatchSpy = jest.spyOn(store, "dispatch");
 
@@ -99,7 +100,7 @@ describe("Given the useCharacter custom hook", () => {
     });
   });
 
-  describe("When it invokes the function createCharacter", () => {
+  describe("When it invokes the function createChampion", () => {
     const createChampionData = getRandomChampion();
     const championFormData = {
       id: createChampionData.id,
@@ -114,7 +115,7 @@ describe("Given the useCharacter custom hook", () => {
       createdBy: "63839656464349981a7e1499",
     };
 
-    describe("and it's invoked with a character data correctly", () => {
+    describe("and it's invoked with a champion data correctly", () => {
       test("Then it should calls navigate with '/home'", async () => {
         const { result } = renderHook(() => useChampion(), {
           wrapper: LoggedProviderWrapper,
@@ -138,6 +139,44 @@ describe("Given the useCharacter custom hook", () => {
         };
 
         await result.current.createChampion(championFormData);
+
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          openModalActionCreator(actionPayload)
+        );
+      });
+    });
+  });
+  describe("When it invokes the function getMyChampions", () => {
+    describe("And it receives a token of a logged user", () => {
+      const dispatchSpy = jest.spyOn(mockInitialStore, "dispatch");
+
+      test("Then it should return a list of private champions of the user", async () => {
+        const { result } = renderHook(() => useChampion(), {
+          wrapper: LoggedProviderWrapper,
+        });
+
+        await result.current.getMyChampions();
+
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          loadAllChampionsActionCreator(testChampionsList)
+        );
+      });
+    });
+
+    describe("And it failed to load champions", () => {
+      const dispatchSpy = jest.spyOn(mockInitialStore, "dispatch");
+
+      test("Then it should open a modal with a error text", async () => {
+        const { result } = renderHook(() => useChampion(), {
+          wrapper: LoggedProviderWrapper,
+        });
+
+        const actionPayload = {
+          isError: true,
+          modalText: "Failed to load champions.",
+        };
+
+        await result.current.getMyChampions();
 
         expect(dispatchSpy).toHaveBeenCalledWith(
           openModalActionCreator(actionPayload)
