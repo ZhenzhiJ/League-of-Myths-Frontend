@@ -44,7 +44,7 @@ const useUser = () => {
         })
       );
 
-      navigate("/home");
+      navigate("/login");
     } catch (error: unknown) {
       dispatch(hideLoadingActionCreator());
       dispatch(
