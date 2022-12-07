@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 const LoginFormStyled = styled.form`
+  width: 300px;
   .form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    &__title {
+      font-size: 32px;
+    }
   }
   .form-container {
     display: flex;
@@ -26,6 +31,11 @@ const LoginFormStyled = styled.form`
   .form__link {
     text-decoration: none;
     color: #8e8f58;
+  }
+  .link-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 

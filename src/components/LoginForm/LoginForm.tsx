@@ -75,14 +75,16 @@ const LoginForm = () => {
             autoComplete="off"
           />
         </div>
-        <Button text="Login" classname="login" />
+        <div className="link-container">
+          <Button text="Login" classname="login" />
+          <span>
+            Don't have an account?{" "}
+            <Link className="form__link" to="/register">
+              Register
+            </Link>
+          </span>
+        </div>
       </div>
-      <span>
-        Don't have an account?{" "}
-        <Link className="form__link" to="/register">
-          Register
-        </Link>
-      </span>
 
       {error && (
         <div className="register-form__error form__error" data-test-id="error">

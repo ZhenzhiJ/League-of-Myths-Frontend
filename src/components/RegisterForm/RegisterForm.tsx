@@ -102,15 +102,16 @@ const RegisterForm = () => {
             value={registerFormData.email}
           />
         </div>
-        <Button text="Register" classname="register" />
+        <div className="link-container">
+          <Button text="Register" classname="register" />
+          <span>
+            Already have an account?{" "}
+            <Link className="form__link" to="/login">
+              Log in
+            </Link>
+          </span>
+        </div>
       </div>
-
-      <span>
-        Already have an account?{" "}
-        <Link className="form__link" to="/login">
-          Log in
-        </Link>
-      </span>
 
       {error && (
         <div className="register-form__error form__error" data-test-id="error">
