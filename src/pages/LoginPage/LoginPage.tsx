@@ -1,10 +1,11 @@
 import LoginForm from "../../components/LoginForm/LoginForm";
+import LoginPageStyled from "./LoginPageStyled";
 
 const LoginPage = () => {
   return (
-    <main>
+    <LoginPageStyled>
       <LoginForm />
-    </main>
+    </LoginPageStyled>
   );
 };
 
