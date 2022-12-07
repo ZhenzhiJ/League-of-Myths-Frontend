@@ -100,6 +100,7 @@ const useUser = () => {
   const logoutUser = () => {
     localStorage.setItem("token", "");
     dispatch(logoutUserActionCreator());
+    navigate("/home");
   };
 
   return { registerUser, loginUser, logoutUser };
