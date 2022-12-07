@@ -3,6 +3,7 @@ import useToken from "../../hooks/useToken/useToken";
 import CreatePage from "../../pages/CreatePage/CreatePage";
 import HomePage from "../../pages/HomePage/HomePage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
+import MyChampionPage from "../../pages/MyChampionPage/MyChampionPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import { useAppSelector } from "../../redux/hooks";
@@ -11,7 +12,7 @@ import Header from "../Header/Header";
 import Loading from "../Loading/Loading";
 
 const App = () => {
-  const { isLoading } = useAppSelector(({ uiModal }) => uiModal);
+  const isLoading = useAppSelector((state) => state.uiModal.isLoading);
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const { getToken } = useToken();
   getToken();
@@ -40,6 +41,7 @@ const App = () => {
           }
         />
         <Route path="/create" element={<CreatePage />} />
+        <Route path="/my-champions" element={<MyChampionPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </>

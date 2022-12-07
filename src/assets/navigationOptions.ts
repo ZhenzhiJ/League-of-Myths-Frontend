@@ -4,8 +4,8 @@ export interface NavigationOptionsStructure {
 }
 
 export const isLoggedOptions: NavigationOptionsStructure = {
-  paths: ["/home", "/create", "/logout"],
-  texts: ["Home", "Create", "Logout"],
+  paths: ["/home", "/my-champions", "/create", "/logout"],
+  texts: ["Home", "My champions", "Create", "Logout"],
 };
 
 export const notLogguedOptions: NavigationOptionsStructure = {
