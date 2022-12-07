@@ -46,6 +46,13 @@ const handlers = [
     );
   }),
 
+  rest.get(`${apiUrl}${champions}/my-champions`, async (req, res, ctx) => {
+    return res.once(
+      ctx.status(200),
+      ctx.json({ myUserChampions: testChampionsList })
+    );
+  }),
+
   rest.get(`${apiUrl}${champions}`, async (req, res, ctx) => {
     return res.once(
       ctx.status(500),
