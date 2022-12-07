@@ -65,10 +65,12 @@ const CreateForm = (): JSX.Element => {
               aria-label="Your champion"
             />
           ) : (
-            <div
+            <img
+              src="/images/default.jpg"
+              alt="default"
               aria-label="Empty image"
               className={"edit-profile__image"}
-            ></div>
+            ></img>
           )}
         </label>
         <input
