@@ -19,8 +19,8 @@ const CreateFormStyle = styled.form`
       height: 300px;
       object-fit: cover;
       object-position: top;
-      border-radius: 50%;
-      border: 5px solid red;
+      border-radius: 25px;
+      border: 5px solid black;
       object-fit: cover;
       object-position: top;
       margin: 0 auto;
