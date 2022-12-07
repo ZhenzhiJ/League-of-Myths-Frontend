@@ -24,15 +24,16 @@ const useChampion = () => {
   const token = localStorage.getItem("token");
 
   const getAllChampions = useCallback(async () => {
-    dispatch(showLoadingActionCreator());
     try {
+      dispatch(showLoadingActionCreator());
       const response = await axios.get(`${apiUrl}${champions}`);
 
       const responseData = response.data;
 
       const { allChampions } = responseData;
-      dispatch(hideLoadingActionCreator());
+
       dispatch(loadAllChampionsActionCreator(allChampions));
+      dispatch(hideLoadingActionCreator());
     } catch (error: unknown) {
       dispatch(hideLoadingActionCreator());
       dispatch(
@@ -44,13 +45,39 @@ const useChampion = () => {
     }
   }, [dispatch]);
 
+  const getMyChampions = useCallback(async () => {
+    try {
+      dispatch(showLoadingActionCreator());
+      const response = await axios.get(`${apiUrl}${champions}/my-champions`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const responseData = response.data;
+
+      const { myUserChampions } = responseData;
+
+      dispatch(loadAllChampionsActionCreator(myUserChampions));
+      dispatch(hideLoadingActionCreator());
+    } catch (error: unknown) {
+      dispatch(hideLoadingActionCreator());
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          modalText: "Failed to load champions.",
+        })
+      );
+    }
+  }, [dispatch, token]);
+
   const deleteChampion = useCallback(
     async (idChampion: string) => {
-      dispatch(showLoadingActionCreator());
       try {
+        dispatch(showLoadingActionCreator());
         await axios.delete(`${apiUrl}${champions}/delete/${idChampion}`);
-        dispatch(hideLoadingActionCreator());
         dispatch(deleteChampionActionCreator(idChampion));
+        dispatch(hideLoadingActionCreator());
         dispatch(
           openModalActionCreator({
             isError: false,
@@ -72,8 +99,8 @@ const useChampion = () => {
 
   const createChampion = useCallback(
     async (championForm: ChampionForm) => {
-      dispatch(showLoadingActionCreator());
       try {
+        dispatch(showLoadingActionCreator());
         await axios.post(
           `${apiUrl}${champions}${createChampionRoute}`,
           championForm,
@@ -106,7 +133,7 @@ const useChampion = () => {
     [dispatch, navigate, token]
   );
 
-  return { getAllChampions, deleteChampion, createChampion };
+  return { getAllChampions, deleteChampion, createChampion, getMyChampions };
 };
 
 export default useChampion;
