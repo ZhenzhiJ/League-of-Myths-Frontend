@@ -62,7 +62,7 @@ describe("Given the custom hook useUser", () => {
       expect(dispatchSpy).toHaveBeenCalledWith(
         openModalActionCreator(actionPayload)
       );
-      expect(mockedUseNavigate).toHaveBeenCalledWith("/home");
+      expect(mockedUseNavigate).toHaveBeenCalledWith("/login");
     });
   });
 
