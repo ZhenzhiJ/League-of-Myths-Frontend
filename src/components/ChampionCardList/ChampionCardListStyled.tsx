@@ -15,7 +15,7 @@ const ChampionCardListStyled = styled.div`
     padding-top: 30px;
     margin: 0;
     text-align: center;
-    font-size: 48px;
+    font-size: 40px;
   }
   .list-title {
     margin: 0;
